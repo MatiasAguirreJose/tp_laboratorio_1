@@ -1,0 +1,165 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+#include "Funciones.h"
+#define TRUE 0
+#define FALSE 1
+#define TAM 10
+#define TAMLOCALIDAD 3
+int main(void) {
+	setbuf(stdout,NULL);
+
+	char Empresa[10];
+
+	int Direccion;
+	float Cuit;
+	int idLocalidad;
+	int buscarError ;
+	int polipropileno ;
+	int id=0;
+
+	int idModificar;
+	int idEliminar;
+	int PedidosProcesadosDato;
+	int PedidosPendientesDato;
+	Clientes muestra[TAM];
+	Pedido clientes[TAM];
+
+	eLocalidad localidadArray[3] =
+	{
+			{100, "Avellaneda"},
+			{101, "Lanus"},
+			{102, "Quilmes"},
+	};
+
+	ePromedio Promedio[TAM];
+
+
+
+	InicializarClientes( muestra, clientes, TAM);
+	int opcion;
+
+	SelecionarMenu();
+	do{
+	scanf("%d",&opcion);
+
+
+
+		switch (opcion) {
+			case 1:
+
+
+
+
+
+
+
+				id++;
+				do{
+				buscarError = GetString("ingrese la Empresa","ERROR iNGRESE DE NUEVO ", Empresa, 10) ;
+				}while(buscarError == -1);
+
+				LocalidadMenu( localidadArray ,TAMLOCALIDAD);
+
+				do{
+				getNumero(&idLocalidad, "\nIngrese la Localidad");
+				buscarError = BuscarLocalidadPorId(localidadArray, TAMLOCALIDAD, idLocalidad);
+				}while(buscarError == -1);
+
+				getNumero(&Direccion, "Ingrese la direccion");
+
+				getNumeroFloat(&Cuit,"ingrese el cuit");
+
+				if(AniadirCliente(muestra, TAM, id, Empresa, idLocalidad,Cuit,Direccion) == 0){
+					puts("cliente cargado exitosamente");
+				}else {
+					puts("no se puedo ingresar exitosamente");
+				}
+
+				Opcion();
+
+			break;
+
+			case 2:
+				MostrarDatos(muestra, localidadArray,TAM,TAMLOCALIDAD);
+
+				getNumero(&idModificar, "Ingrese el id del cliente que quiere modificar:");
+
+
+				buscarError = ModificarDatosCliente(muestra, localidadArray, TAM, idModificar,TAMLOCALIDAD);
+				if(buscarError == -1){
+					puts("No existe ese ID");
+				}
+				Opcion();
+			break;
+			case 3:
+				getNumero(&idEliminar, "Ingrese el id del cliente que quiere eliminar:");
+
+				ElimiarCliente(muestra,  TAM, idEliminar);
+				Opcion();
+			break;
+
+			case 4:
+				MostrarDatos(muestra, localidadArray,TAM,TAMLOCALIDAD);
+
+
+				PedidoRecoleccion( muestra,clientes, TAM);
+				Opcion();
+				break;
+			case 5:
+				MostrarPedidosPendientes(muestra, clientes, TAM);
+				polipropileno  =ProcesarResiduos(muestra,  clientes, TAM);
+				Opcion();
+				break;
+
+			case 6:
+
+				ImprimirClientes(muestra, clientes,localidadArray, TAM,TAMLOCALIDAD);
+				Opcion();
+			break;
+
+			case 7:
+
+				PedidosPendientesDato = MostrarPedidosPendientes(muestra, clientes, TAM);
+				if(PedidosPendientesDato == -1){
+					puts("no hay Pedidos Pendientes");
+				}
+				Opcion();
+				break;
+
+			case 8:
+				PedidosProcesadosDato = MostrarPedidosProcesados(muestra, clientes, TAM);
+
+				if(PedidosProcesadosDato == -1){
+					puts("no hay Pedidos Procesados");
+				}
+				Opcion();
+				break;
+			case 9:
+				MostrarPorDireccion(muestra, localidadArray,TAMLOCALIDAD, clientes,TAM);
+				Opcion();
+				break;
+			case 10:
+
+				PromedioCliente( muestra, clientes, id, polipropileno);
+				Opcion();
+				break;
+			case 11:
+				PromedioClientesMayor(muestra, clientes,Promedio, TAM);
+				/*PromedioClientesMenos(muestra, clientes,Promedio, TAM);*/
+				Opcion();
+				break;
+
+
+		}
+
+
+
+
+
+	}while(opcion != 12);
+
+	return EXIT_SUCCESS;
+}
+

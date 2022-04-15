@@ -1,0 +1,213 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+
+#define TRUE 0
+#define FALSE 1
+
+struct{
+	 int idCliente ;
+	 char Empresa[21];
+	int PedidosPendientes;
+	int PedidosCompletados;
+	 int idLocalidad ;
+	 float cuit;
+	int direccion;
+	 int isEmpty;
+}typedef Clientes;
+
+struct{
+	int idRecoleccion;
+	int idCliente;
+	int  flag;
+	int estado;
+	int kilos;
+	int isEmpty;
+	int promedioCliente;
+
+}typedef Pedido;
+
+struct{
+	int idLocalidad;
+	char Localidad[30];
+
+}typedef eLocalidad;
+
+
+//-----------------------------------------------------------------------------------------
+/// \brief Se pide un char , se lo ingresa y valida si es un strig
+/// \param mensaje[] char
+/// \param entidad
+/// \return int Retorna si es false o true enm caso de false se repite
+int GetString(char mensaje[],char mensajeError[], char cadena[], int tam);
+
+
+/// \brief valida si es un entero
+/// \param int* pResultado
+/// \return retorna false o true
+int getInt(int* pResultado);
+
+/// \brief valida si es un string
+/// \param int* pResultad
+/// \return int Retorna si es false o true
+int esNumerica(char* cadena);
+
+/// \brief Se pide un numero flotante, se lo ingresa y valida
+/// \param har mensaje[]
+/// \param float* pResultado
+/// \return int Retorna un flotante
+float getNumeroFloat(float* pResultado, char mensaje[]);
+
+/// \brief verifica si no e sun string
+/// \param float* pResultado)
+/// \return int Retorna un entero
+int getFloat(float* pResultado);
+
+/// \brief Se pide un numero flotante, se lo ingresa y valida
+/// \param har mensaje[]
+/// \param float* pResultado
+/// \return int Retorna un flotante
+int esNumericaFloat(char* cadena);
+
+/// \brief valida si es un string
+/// \param char* cadena
+/// \return int Retorna si es false o true
+int esString(char* cadena);
+
+/// \brief ingresa un numero y lo guarda
+/// \param int* pResultado
+/// \param char mensaje[]
+/// \return retorna un entero
+int getNumero(int* pResultado, char mensaje[]);
+
+
+//-----------------------------------------------------------------------------------------
+/// \brief mensaje menu.
+/// \return no retorna nada
+void SelecionarMenu(void);
+/// \brief mensaje opcion.
+/// \return no retorna nada
+void Opcion(void);
+/// \brief añade un clientee
+/// \param int tam
+/// \param Clientes* muestra
+/// \param int tamanio
+/// \param int id
+/// \param char empresa[]
+/// \param int localidad
+/// \param float cuit
+/// \param int direccion
+/// \return retorna un entenro
+int AniadirCliente(Clientes* muestra, int tamanio,int id,char empresa[],int localidad, float cuit, int direccion);
+/// \brief muestra los datos del cliente.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param eLocalidad* localidadArray
+/// \param int tamanio
+/// \param int tamLocalidad
+/// \return no retorna nada
+void MostrarDatos(Clientes* muestra,eLocalidad* localidadArray, int tamanio, int tamLocalidad);
+/// \brief inicializa un cliente.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param   Pedido* clientes
+/// \return retorna un entero;
+int InicializarClientes(Clientes* muestra,  int tam);
+/// \brief modifica los datos del cliente.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param eLocalidad* localidadArray
+/// \param int tamLocalidad
+/// \param  int idModificar
+/// \return retorna un entero;
+int InicializarPedido( Pedido* clientes, int tam);
+int ModificarDatosCliente(Clientes* muestra,eLocalidad* localidadArray, int tam, int idModificar,int tamLocalidad);
+/// \brief elimina un cliente.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param int idEliminar
+/// \return no retorna nada;
+void ElimiarCliente(Clientes* muestra, int tam, int idEliminar);
+/// \brief crea el pedido de recoleccion.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param Pedido* clientes
+/// \return retorna un entero;
+int PedidoRecoleccion(Clientes* muestra, Pedido* clientes, int tam , int idrecoleccion);
+/// \brief Imprime los clientes.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param eLocalidad* localidadArray
+/// \param int tamLocalidad
+/// \param Pedido* clientes
+/// \return no retorna nada;
+void ImprimirClientes(Clientes* muestra, Pedido* clientes,eLocalidad* localidadArray, int tam , int lenlocalidad);
+/// \brief muestra los pedidos pendientes .
+/// \param int tam
+/// \param Clientes* muestra
+/// \param Pedido* clientes
+/// \return retorna un entero;
+int MostrarPedidosPendientes(Clientes* muestra, Pedido* clientes, int tam);
+/// \brief muestra los pedidos pendientes de esa localidad.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param eLocalidad* localidadArray
+/// \param int tamLocalidad
+/// \param Pedido* clientes
+/// \return no retorna nada;
+void MostrarPorDireccion(Clientes* muestra,eLocalidad* localidadArray,int tamLocalidad, Pedido* clientes, int tam);
+/// \brief procesa los residuos pendientes.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param Pedido* clientes
+/// \return int Retorna el numero enviado;
+int ProcesarResiduos(Clientes* muestra, Pedido* clientes, int tam);
+/// \brief Muestra los pedidos procesados.
+/// \param int tam
+/// \param Clientes* muestra
+/// \param Pedido* clientes
+/// \return int Retorna el numero enviado;
+int MostrarPedidosProcesados(Clientes* muestra, Pedido* clientes, int tam);
+/// \brief Se pide el promedio.
+/// \param Clientes* muestra
+/// \param Pedido* clientes
+/// \param int cantidadCliente
+/// \param int polipropileno
+/// \return no retorna nada;
+void PromedioCliente(Clientes* muestra, Pedido* clientes, int cantidadCliente,int polipropileno);
+/// \brief Se pide un numero entero.
+/// \param mensaje[] char
+/// \param numMin int
+/// \param numMax int
+/// \return int Retorna el numero enviado;
+int IngresarEntero(char mensaje[],int min,int max);
+/// \brief menu que muestra las localidades
+/// \param eLocalidad* localidadArray
+/// \param int lenLocalidad
+/// \return no retorna nada
+void LocalidadMenu(eLocalidad* localidadArray, int lenlocalidad);
+/// \brief busca la localidad por id
+/// \param int tam
+/// \param eLocalidad* localidadArray
+/// \param int idLocalidad
+/// \return retorna un entero
+int BuscarLocalidadPorId(eLocalidad* localidadArray, int len, int idLocalidad);
+/// \brief promedio del cliente con mayor pedidos pendientes
+/// \param int tam
+/// \param Clientes* muestra
+/// \param Clientes* clientes
+/// \return no retorna nada
+void PromedioClientesMayor(Clientes* muestra, Pedido* clientes, int tam);
+/// \brief promedio del cliente con mayor pedidos procesados
+/// \param int tam
+/// \param Clientes* muestra
+/// \param Clientes* clientes
+/// \return no retorna nada
+void PromedioClientesMenos(Clientes* muestra, Pedido* clientes,  int tam);
+/// \brief promedio del cliente con mayor pedidos
+/// \param int tam
+/// \param Clientes* muestra
+/// \param Clientes* clientes
+/// \return no retorna nada
+void PromedioClientesMasPedidos(Clientes* muestra, Pedido* clientes,  int tam);

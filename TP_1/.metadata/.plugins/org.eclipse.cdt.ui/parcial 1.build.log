@@ -1,0 +1,64 @@
+19:09:09 **** Rebuild of configuration Debug for project parcial 1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parcial 1.o" "..\\src\\parcial 1.c" 
+..\src\parcial 1.c: In function 'main':
+..\src\parcial 1.c:14:8: error: array size missing in 'Localidad'
+   14 |  char *Localidad[];
+      |        ^~~~~~~~~
+..\src\parcial 1.c:44:10: warning: passing argument 1 of 'gets' from incompatible pointer type [-Wincompatible-pointer-types]
+   44 |     gets(Localidad);
+      |          ^~~~~~~~~
+      |          |
+      |          char **
+In file included from ..\src\parcial 1.c:1:
+c:\mingw\x86_64-w64-mingw32\include\stdio.h:502:17: note: expected 'char *' but argument is of type 'char **'
+  502 |   char *__cdecl gets(char *_Buffer) __MINGW_ATTRIB_DEPRECATED_SEC_WARN;
+      |                 ^~~~
+..\src\parcial 1.c:54:50: warning: passing argument 5 of 'AniadirCliente' from incompatible pointer type [-Wincompatible-pointer-types]
+   54 |     if(AniadirCliente(muestra, TAM, id, Empresa, &Localidad,Cuit,Direccion) == 0){
+      |                                                  ^~~~~~~~~~
+      |                                                  |
+      |                                                  char * (*)[1]
+In file included from ..\src\parcial 1.c:5:
+..\src\Funciones.h:31:81: note: expected 'char **' but argument is of type 'char * (*)[1]'
+   31 | int AniadirCliente(Clientes* muestra, int tamanio, int id, char empresa[],char *Localidad[], int cuit, char direccion[]);
+      |                                                                           ~~~~~~^~~~~~~~~~~
+..\src\parcial 1.c:63:31: warning: passing argument 3 of 'MostrarDatos' from incompatible pointer type [-Wincompatible-pointer-types]
+   63 |     MostrarDatos(muestra, TAM,*Localidad );
+      |                               ^~~~~~~~~~
+      |                               |
+      |                               char *
+In file included from ..\src\parcial 1.c:5:
+..\src\Funciones.h:32:56: note: expected 'char **' but argument is of type 'char *'
+   32 | void MostrarDatos(Clientes* muestra, int tamanio,char *localidad[]);
+      |                                                  ~~~~~~^~~~~~~~~~~
+..\src\parcial 1.c:68:54: warning: passing argument 4 of 'ModificarDatosCliente' from incompatible pointer type [-Wincompatible-pointer-types]
+   68 |     ModificarDatosCliente(muestra,  TAM, idModificar,*Localidad);
+      |                                                      ^~~~~~~~~~
+      |                                                      |
+      |                                                      char *
+In file included from ..\src\parcial 1.c:5:
+..\src\Funciones.h:34:78: note: expected 'char **' but argument is of type 'char *'
+   34 | void ModificarDatosCliente(Clientes* muestra, int tam, int idModificar,char *localidad[]);
+      |                                                                        ~~~~~~^~~~~~~~~~~
+..\src\parcial 1.c:80:31: warning: passing argument 3 of 'MostrarDatos' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     MostrarDatos(muestra, TAM,*Localidad);
+      |                               ^~~~~~~~~~
+      |                               |
+      |                               char *
+In file included from ..\src\parcial 1.c:5:
+..\src\Funciones.h:32:56: note: expected 'char **' but argument is of type 'char *'
+   32 | void MostrarDatos(Clientes* muestra, int tamanio,char *localidad[]);
+      |                                                  ~~~~~~^~~~~~~~~~~
+..\src\parcial 1.c:93:48: warning: passing argument 4 of 'ImprimirClientes' from incompatible pointer type [-Wincompatible-pointer-types]
+   93 |      ImprimirClientes(muestra, clientes,  TAM, *Localidad);
+      |                                                ^~~~~~~~~~
+      |                                                |
+      |                                                char *
+In file included from ..\src\parcial 1.c:5:
+..\src\Funciones.h:37:74: note: expected 'char **' but argument is of type 'char *'
+   37 | void ImprimirClientes(Clientes* muestra, Pedido* clientes, int tam,char *localidad[]);
+      |                                                                    ~~~~~~^~~~~~~~~~~
+
+19:09:09 Build Failed. 1 errors, 6 warnings. (took 207ms)
+

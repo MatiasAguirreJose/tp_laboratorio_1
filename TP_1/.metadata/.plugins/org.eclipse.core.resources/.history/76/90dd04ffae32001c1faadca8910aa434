@@ -1,0 +1,140 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+#include "Funciones.h"
+#define TRUE 0
+#define FALSE 1
+#define TAM 10
+#define TAMLOCALIDAD 3
+int main(void) {
+	setbuf(stdout,NULL);
+
+	char Empresa[10];
+
+	int Direccion;
+	float Cuit;
+	int idLocalidad;
+	int buscarError ;
+	int polipropileno ;
+	int id=0;
+	int idModificar;
+	int idEliminar;
+	Clientes muestra[TAM];
+	Pedido clientes[TAM];
+
+	eLocalidad localidadArray[3] =
+	{
+			{100, "Avellaneda"},
+			{101, "Lanus"},
+			{102, "Quilmes"},
+	};
+
+
+
+
+
+	InicializarClientes( muestra, clientes, TAM);
+	int opcion;
+
+	SelecionarMenu();
+	do{
+	scanf("%d",&opcion);
+
+
+
+		switch (opcion) {
+			case 1:
+
+
+
+
+
+
+				id++;
+				do{
+				buscarError = GetString("ingrese la Empresa","ERROR iNGRESE DE NUEVO ", Empresa, 10) ;
+				}while(buscarError == -1);
+
+				LocalidadMenu( localidadArray ,TAMLOCALIDAD);
+
+				do{
+				getNumero(&idLocalidad, "Ingrese la Localidad");
+				buscarError = BuscarLocalidadPorId(localidadArray, TAM, idLocalidad);
+				}while(buscarError == -1);
+
+				getNumero(&Direccion, "Ingrese la direccion");
+
+				getNumeroFloat(&Cuit,"ingrese el cuit");
+
+				if(AniadirCliente(muestra, TAM, id, Empresa, idLocalidad,Cuit,Direccion) == 0){
+					puts("cliente cargado exitosamente");
+				}else {
+					puts("no se puedo ingresar exitosamente");
+				}
+
+			break;
+
+			case 2:
+				MostrarDatos(muestra, localidadArray,TAM,TAMLOCALIDAD);
+
+
+				printf("Ingrese el id del cliente que quiere modificar: ");
+				fflush(stdin);
+				scanf("%d",&idModificar);
+				ModificarDatosCliente(muestra,  TAM, idModificar);
+
+
+			break;
+			case 3:
+				printf("Ingrese el id del cliente que quiere eliminar: ");
+				fflush(stdin);
+				scanf("%d",&idEliminar);
+				ElimiarCliente(muestra,  TAM, idEliminar);
+			break;
+
+			case 4:
+				MostrarDatos(muestra, localidadArray,TAM,TAMLOCALIDAD);
+
+
+				PedidoRecoleccion( muestra,clientes, TAM);
+
+				break;
+			case 5:
+				MostrarPedidosPendientes(muestra, clientes, TAM);
+				polipropileno  =ProcesarResiduos(muestra,  clientes, TAM);
+				break;
+
+			case 6:
+
+				ImprimirClientes(muestra, clientes,localidadArray, TAM,TAMLOCALIDAD;
+			break;
+
+			case 7:
+
+				MostrarPedidosPendientes(muestra, clientes, TAM);
+				break;
+			case 8:
+				MostrarPedidosProcesados(muestra, clientes, TAM);
+				break;
+			case 9:
+				MostrarPorDireccion(muestra,  clientes,TAM);
+
+				break;
+			case 10:
+
+				PromedioCliente( muestra, clientes, id, polipropileno);
+				break;
+
+
+		}
+
+
+
+
+
+	}while(opcion != 11);
+
+	return EXIT_SUCCESS;
+}
+

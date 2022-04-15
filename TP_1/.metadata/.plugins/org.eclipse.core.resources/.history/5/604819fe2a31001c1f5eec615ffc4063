@@ -1,0 +1,95 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct
+{
+ int id;
+ char name[51];
+ char lastName[51];
+ float salary;
+ int idlocalidad;
+ int isEmpty;
+}typedef Employee;
+
+struct
+{
+ char localidad[51];
+ int idlocalidad;
+
+}typedef eLocalidad;
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+int id=0;
+int idLocalidad = 100;
+
+int i;
+
+int auxiliar;
+
+
+Employee personas[4];
+eLocalidad localidad[4];
+
+
+
+		for (i = 0; i < 3; ++i) {
+			idLocalidad++;
+			id++;
+
+			puts("\n ingrese su nombre");
+			fflush(stdin);
+			gets(personas[i].name);
+
+			puts("\n ingrese la localidad");
+			fflush(stdin);
+			gets(localidad[i].localidad);
+
+			personas[i].id = id;
+			localidad[i].idlocalidad = idLocalidad;
+
+		}
+
+
+		for (int j = i+1; j < 5; ++j) {
+			if(localidad[i].localidad == localidad[j].localidad ){
+
+
+				localidad[i].idlocalidad = personas[j].idlocalidad;
+
+
+			}
+
+
+
+
+
+								}
+		for (i = 0; i < 3; ++i) {
+		for (int j = i+1; j < 5; ++j) {
+
+			if(localidad[i].idlocalidad == localidad[j].idlocalidad ){
+
+				printf("%d",localidad[i].idlocalidad);
+				printf("%s",localidad[i].localidad);
+
+				break;
+
+
+			}else{
+
+
+				printf("%d",localidad[i].idlocalidad);
+				printf("%s",localidad[i].localidad);
+break;
+			}
+		}
+
+
+
+
+		}
+
+}

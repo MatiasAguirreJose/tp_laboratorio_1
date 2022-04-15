@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+
+#define TRUE 0
+#define FALSE 1
+
+struct{
+	 int idCliente ;
+	 char Empresa[21];
+
+	 int idLocalidad ;
+	 float cuit;
+	int direccion;
+	 int isEmpty;
+}typedef Clientes;
+
+struct{
+	int idRecoleccion;
+	int idCliente;
+	int  flag;
+	int PedidosPendientes;
+	int PedidosCompletados;
+	int estado;
+	int kilos;
+	int isEmpty;
+	int promedioCliente;
+}typedef Pedido;
+
+struct{
+	int idLocalidad;
+	char Localidad[30];
+
+
+}typedef eLocalidad;
+
+struct{
+	int pedidosPendientes;
+	 char Empresa[21];
+}typedef ePromedio;
+
+//-----------------------------------------------------------------------------------------
+/// \brief Se pide un char , se lo ingresa y valida si es un strig
+/// \param mensaje[] char
+/// \param entidad
+/// \return int Retorna si es false o true enm caso de false se repite
+int GetString(char mensaje[],char mensajeError[], char cadena[], int tam);
+
+
+/// \brief valida si es un entero
+/// \param int* pResultado
+/// \return retorna false o true
+int getInt(int* pResultado);
+
+/// \brief valida si es un string
+/// \param int* pResultad
+/// \return int Retorna si es false o true
+int esNumerica(char* cadena);
+
+/// \brief Se pide un numero flotante, se lo ingresa y valida
+/// \param har mensaje[]
+/// \param float* pResultado
+/// \return int Retorna un flotante
+float getNumeroFloat(float* pResultado, char mensaje[]);
+
+/// \brief verifica si no e sun string
+/// \param float* pResultado)
+/// \return int Retorna un entero
+int getFloat(float* pResultado);
+
+/// \brief Se pide un numero flotante, se lo ingresa y valida
+/// \param har mensaje[]
+/// \param float* pResultado
+/// \return int Retorna un flotante
+int esNumericaFloat(char* cadena);
+
+/// \brief valida si es un string
+/// \param char* cadena
+/// \return int Retorna si es false o true
+int esString(char* cadena);
+
+/// \brief ingresa un numero y lo guarda
+/// \param int* pResultado
+/// \param char mensaje[]
+/// \return retorna un entero
+int getNumero(int* pResultado, char mensaje[]);
+
+
+//-----------------------------------------------------------------------------------------
+
+void SelecionarMenu(void);
+void Opcion(void);
+int AniadirCliente(Clientes* muestra, int tamanio,int id,char empresa[],int localidad, float cuit, int direccion);
+void MostrarDatos(Clientes* muestra,eLocalidad* localidadArray, int tamanio, int tamLocalidad);
+int InicializarClientes(Clientes* muestra, Pedido* clientes, int tam);
+int ModificarDatosCliente(Clientes* muestra,eLocalidad* localidadArray, int tam, int idModificar,int tamLocalidad);
+void ElimiarCliente(Clientes* muestra, int tam, int idEliminar);
+int PedidoRecoleccion(Clientes* muestra, Pedido* clientes, int tam );
+void ImprimirClientes(Clientes* muestra, Pedido* clientes,eLocalidad* localidadArray, int tam , int lenlocalidad);
+int MostrarPedidosPendientes(Clientes* muestra, Pedido* clientes, int tam);
+void MostrarPorDireccion(Clientes* muestra,eLocalidad* localidadArray,int tamLocalidad, Pedido* clientes, int tam);
+int ProcesarResiduos(Clientes* muestra, Pedido* clientes, int tam);
+int MostrarPedidosProcesados(Clientes* muestra, Pedido* clientes, int tam);
+/// \brief Se pide el promedio.
+/// \param
+/// \param numMin int
+/// \param numMax int
+/// \return int Retorna el numero enviado;
+void PromedioCliente(Clientes* muestra, Pedido* clientes, int cantidadCliente,int polipropileno);
+/// \brief Se pide un numero entero.
+/// \param mensaje[] char
+/// \param numMin int
+/// \param numMax int
+/// \return int Retorna el numero enviado;
+int IngresarEntero(char mensaje[],int min,int max);
+void LocalidadMenu(eLocalidad* localidadArray, int lenlocalidad);
+int BuscarLocalidadPorId(eLocalidad* localidadArray, int len, int idLocalidad);
+void PromedioClientes(Clientes* muestra, Pedido* clientes, ePromedio* promedio, int tam);

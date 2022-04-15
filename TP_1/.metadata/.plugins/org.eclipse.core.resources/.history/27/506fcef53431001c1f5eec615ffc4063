@@ -1,0 +1,110 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <limits.h>
+
+struct
+{
+ int id;
+ char name[51];
+ int idlocalidad;
+}typedef Employee;
+
+struct
+{
+ char localidad[51];
+ int idlocalidad;
+
+}typedef eLocalidad;
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+
+int id=0;
+int idLocalidad = 100;
+int flag = 1;
+int i;
+int auxiliar ;
+
+
+Employee personas[4];
+eLocalidad localidad[4];
+
+
+
+		for (i = 0; i < 3; ++i) {
+			idLocalidad++;
+			id++;
+
+			puts("\n ingrese su nombre");
+			fflush(stdin);
+			gets(personas[i].name);
+
+			puts("\n ingrese la localidad");
+			fflush(stdin);
+			gets(localidad[i].localidad);
+
+			personas[i].id = id;
+			idLocalidad++;
+
+			if(flag == 1){
+
+				localidad[i].idlocalidad = idLocalidad;
+				personas[i].idlocalidad = idLocalidad;
+
+				flag = 0;
+
+			}else{
+
+				for (int j = i; j < 3; ++j) {
+				if(strcmp(localidad[0].localidad, localidad[j].localidad)==0 ){
+					auxiliar = 	localidad[i].idlocalidad;
+					localidad[j].idlocalidad = auxiliar;
+					personas[j].idlocalidad = auxiliar;
+					break;
+				}else{
+
+					localidad[j].idlocalidad = idLocalidad;
+					personas[j].idlocalidad = idLocalidad;
+					break;
+
+				}
+
+				}
+			}
+
+
+
+		}
+
+
+
+		for (i = 0; i < 3-1; ++i) {
+		for (int j = i+1; j < 3; ++j) {
+
+			if(localidad[i].idlocalidad == localidad[j].idlocalidad ){
+				printf("\n %s",personas[i].name);
+
+				printf("\n %d",localidad[i].idlocalidad);
+				printf("\n %s",localidad[i].localidad);
+
+
+
+			}else{
+
+
+				puts("son distintos");
+
+
+			}
+		}
+
+
+		}}
+
+
+
+

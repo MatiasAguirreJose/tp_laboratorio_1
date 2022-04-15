@@ -1,0 +1,12 @@
+19:40:57 **** Rebuild of configuration Debug for project pruebaTp3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o parser.o "..\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Employee.o "..\\Employee.c" 
+gcc "-LD:\\TPS\\eclipse_tp3_v3\\tp3_windows" -o pruebaTp3.exe Controller.o Employee.o main.o parser.o -lLinkedList 
+c:/mingw/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: skipping incompatible D:\TPS\eclipse_tp3_v3\tp3_windows/libLinkedList.a when searching for -lLinkedList
+c:/mingw/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: skipping incompatible D:\TPS\eclipse_tp3_v3\tp3_windows\libLinkedList.a when searching for -lLinkedList
+c:/mingw/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: skipping incompatible D:\TPS\eclipse_tp3_v3\tp3_windows/libLinkedList.a when searching for -lLinkedList
+c:/mingw/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot find -lLinkedList
+collect2.exe: error: ld returned 1 exit status
